@@ -1,0 +1,36 @@
+package net.codejava.ws;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Server {
+	public static ServImpl serv;
+	
+	public static boolean hadDeal_V = false;
+	public static boolean hadDeal_C = false;
+	public static boolean hadNot = false;
+	public static List<FeedHistoryVendedores> feed_V = new ArrayList<FeedHistoryVendedores>();
+	public static List<FeedHistoryCompradores> feed_C = new ArrayList<FeedHistoryCompradores>();
+	public static List<FeedHistoryNotificacoes> feed_N = new ArrayList<FeedHistoryNotificacoes>();
+	public static String id_vendedor;
+	public static String id_comprador;
+	public static String id_notificar;
+	public static String message_vendedor;
+	public static String message_comprador;
+	public static String message_notificar;
+}
+
+class FeedHistoryVendedores {
+	public String id_vendedor;
+	public String message_vendedor;
+}
+
+class FeedHistoryCompradores {
+	public String id_comprador;
+	public String message_comprador;
+}
+
+class FeedHistoryNotificacoes {
+	public String id_notificar;
+	public String message_notificar;
+}

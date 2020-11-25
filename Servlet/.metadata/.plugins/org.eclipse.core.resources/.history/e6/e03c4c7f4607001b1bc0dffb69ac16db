@@ -1,0 +1,61 @@
+package net.codejava.ws;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.sse.OutboundSseEvent;
+import javax.ws.rs.sse.Sse;
+import javax.ws.rs.sse.SseEventSink;
+
+@WebServlet("/event")
+public class SSE extends HttpServlet{
+	private static final long serialVersionUID = 1L;
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
+		response.setContentType("text/event-stream");
+		response.setCharacterEncoding("UTF-8");
+		PrintWriter printWriter = null;
+		
+		while(true) {
+			try {
+				int i = 1;
+				printWriter = response.getWriter();
+				printWriter.print("escrito no servidor " + i);
+				response.flushBuffer();
+				Thread.sleep(3000);
+			}catch(IOException | InterruptedException e) {
+				printWriter.close();
+				break;
+			}
+		}
+	}
+	
+	/*
+	@GET
+	@Produces(MediaType.SERVER_SENT_EVENTS)
+	public void toString(@Context SseEventSink eventSink, @Context Sse sse) {
+	    try(SseEventSink sink = eventSink){
+	        sink.send(sse.newEvent("4200"));
+	        sink.send(sse.newEvent("MyEventName","more data"));
+
+	        OutboundSseEvent event = sse.newEventBuilder().
+	            id("EventId").
+	            name("EventName").
+	            data("Data").
+	            reconnectDelay(10000).
+	            comment("Anything i wanna comment here!").
+	            build();
+
+	        sink.send(event);
+	    }
+	}*/
+}

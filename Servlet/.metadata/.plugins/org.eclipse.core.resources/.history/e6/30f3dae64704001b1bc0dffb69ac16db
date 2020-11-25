@@ -1,0 +1,20 @@
+package net.codejava.ws;
+
+import javax.websocket.server.PathParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import com.sun.research.ws.wadl.Response;
+
+@Path("/declararInteresse")
+public class Interface {
+
+	@POST
+	@Path("/{param}")
+	public Response declararInteresse(@PathParam("param") String msg) {
+		return new SecUpd("Collection teste", "09/30/2020", "10/02/20202");
+	}
+}

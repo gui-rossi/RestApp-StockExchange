@@ -1,0 +1,76 @@
+package net.codejava.ws;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.rmi.RemoteException;
+
+import javax.inject.Singleton;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.sse.OutboundSseEvent;
+import javax.ws.rs.sse.Sse;
+import javax.ws.rs.sse.SseBroadcaster;
+import javax.ws.rs.sse.SseEventSink;
+
+//classe SSE responsavel por mandar um GET aos listeners do client
+//Parametro ID: id do client enviado por ele (porta em uso)
+//@Singleton
+@Path("/event")
+public class SSE{
+	int id;
+	String message = "nada a mostrar";
+	
+	@GET
+    @Produces(MediaType.SERVER_SENT_EVENTS)
+    public void getServerSentEvents(@Context SseEventSink eventSink, @Context Sse sse, @QueryParam("id") String id) {
+		this.message = "nada a mostrar";
+		//percorro a fila de compras realizadas para ver se tem algo a ser notificado ao ID do parametro
+		for (FeedHistoryCompradores feed_c : Server.feed_C){
+        	//usuario requisitou ver o feed, vejo se há alguma compra dele efetuada
+        	if (id.contains(feed_c.id_comprador)) {
+        		this.message = feed_c.message_comprador;
+        		//removo o feed e saio
+        		Server.feed_C.remove(feed_c);
+        		break;
+        	}
+        }
+		//percorro a fila de vendas realizadas para ver se tem algo a ser notificado ao ID do parametro
+		for (FeedHistoryVendedores feed_v : Server.feed_V){
+        	//usuario requisitou ver o feed, vejo se há alguma Venda dele efetuada
+        	if (id.contains(feed_v.id_vendedor)) {
+        		this.message = feed_v.message_vendedor;
+        		//removo o feed e saio
+        		Server.feed_V.remove(feed_v);
+        		break;
+        	}
+        }
+		//percorro a fila de notificacoes para ver se tem algo a ser notificado ao ID do parametro
+		for (FeedHistoryNotificacoes feed_n : Server.feed_N){
+        	//usuario requisitou ver o feed, vejo se há alguma notificacao para ele
+        	if (id.contains(feed_n.id_notificar)) {
+        		this.message = feed_n.message_notificar;
+        		//removo o feed e saio
+        		Server.feed_N.remove(feed_n);
+        		break;
+        	}
+        }
+		OutboundSseEvent event = sse.newEventBuilder()
+	            .name(id)
+	            .data(this.message)
+	            .build();
+	        eventSink.send(event);
+    }
+}
+
+
+

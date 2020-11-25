@@ -1,0 +1,13 @@
+127.0.0.1 - - [29/Sep/2020:17:36:38 -0300] "GET / HTTP/1.1" 200 783
+0:0:0:0:0:0:0:1 - - [29/Sep/2020:17:37:19 -0300] "GET / HTTP/1.1" 200 783
+0:0:0:0:0:0:0:1 - - [29/Sep/2020:17:37:38 -0300] "GET /HelloREST/rest/bonjour HTTP/1.1" 200 15
+0:0:0:0:0:0:0:1 - - [29/Sep/2020:17:42:41 -0300] "GET /HelloREST/rest/bonjour HTTP/1.1" 200 72
+0:0:0:0:0:0:0:1 - - [29/Sep/2020:17:42:41 -0300] "GET /favicon.ico HTTP/1.1" 404 774
+0:0:0:0:0:0:0:1 - - [29/Sep/2020:17:43:27 -0300] "GET /HelloREST/rest/bonjour/direBonjour HTTP/1.1" 404 725
+0:0:0:0:0:0:0:1 - - [29/Sep/2020:17:43:32 -0300] "GET /HelloREST/rest/bonjour/ HTTP/1.1" 200 72
+0:0:0:0:0:0:0:1 - - [29/Sep/2020:17:50:06 -0300] "GET /HelloREST/rest/bonjour/ HTTP/1.1" 200 72
+0:0:0:0:0:0:0:1 - - [29/Sep/2020:17:50:50 -0300] "GET /HelloREST/rest/bonjour/ HTTP/1.1" 200 17
+0:0:0:0:0:0:0:1 - - [29/Sep/2020:18:16:47 -0300] "GET /HelloREST/rest/bonjour/ HTTP/1.1" 200 17
+0:0:0:0:0:0:0:1 - - [29/Sep/2020:18:17:07 -0300] "GET /HelloREST/rest/bomdia/ HTTP/1.1" 200 15
+0:0:0:0:0:0:0:1 - - [29/Sep/2020:18:17:13 -0300] "GET /HelloREST/rest/bonjour/ HTTP/1.1" 200 17
+0:0:0:0:0:0:0:1 - - [29/Sep/2020:18:21:54 -0300] "GET /HelloREST/rest/bonjour/ HTTP/1.1" 200 17

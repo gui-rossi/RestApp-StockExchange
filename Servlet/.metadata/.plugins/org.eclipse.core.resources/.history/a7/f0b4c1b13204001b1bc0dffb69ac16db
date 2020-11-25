@@ -1,0 +1,29 @@
+package net.codejava.ws;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+public class Start implements ServletContextListener {
+	int i = 0;
+	
+	public static void main(String[] args) throws InterruptedException {    
+        System.out.println("Main executed");
+       //I want to execute some code here
+	}
+	
+	@Override
+    public void contextInitialized(ServletContextEvent arg0) {
+		
+		while(true) {
+			System.out.println("Application started" + i);
+	        i++;
+	        
+	        if (i >= 150000)
+	        	break;
+		}
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent arg0) {
+    }
+}

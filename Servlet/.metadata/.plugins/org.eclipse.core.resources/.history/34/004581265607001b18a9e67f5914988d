@@ -1,0 +1,33 @@
+package net.codejava.ws;
+
+public class SecUpd {
+	private String CollectionName;
+	private String SoftDeploy;
+	private String HardDeploy;
+	
+	public SecUpd(String collectionName, String softDeploy, String hardDeploy) {
+		super();
+		CollectionName = collectionName;
+		SoftDeploy = softDeploy;
+		this.HardDeploy = hardDeploy;
+	}
+	
+	public String getCollectionName() {
+		return CollectionName;
+	}
+	public void setCollectionName(String collectionName) {
+		CollectionName = collectionName;
+	}
+	public String getSoftDeploy() {
+		return SoftDeploy;
+	}
+	public void setSoftDeploy(String softDeploy) {
+		SoftDeploy = softDeploy;
+	}
+	public String getHardDeploy() {
+		return HardDeploy;
+	}
+	public void setHardDeploy(String hardDeploy) {
+		this.HardDeploy = hardDeploy;
+	}
+}

@@ -1,0 +1,70 @@
+package net.codejava.ws;
+
+import java.rmi.AccessException;
+import java.rmi.NotBoundException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.LinkedHashMap;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.websocket.OnMessage;
+import javax.websocket.server.PathParam;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.container.ResourceContext;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+
+import org.apache.tomcat.util.json.JSONParser;
+import org.apache.tomcat.util.json.ParseException;
+
+import com.sun.research.ws.wadl.Response;
+
+/*
+ * int id = Integer.parseInt(json.get("id").toString());
+			String empresa = json.get("empresa").toString();
+ * */
+
+@Path("/funcs")
+public class Interface {
+	Registry refServ;
+	
+	@Path("/inserirInteresse")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void inserirInteresseFunc(String msg) {
+		JSONParser parser = new JSONParser(msg);
+		try {
+			LinkedHashMap<String, Object> json = parser.object();
+			int id = Integer.parseInt(json.get("id").toString());
+			String empresa = json.get("empresa").toString();
+			Server.serv.inserirCotacaoInteressante(empresa, id);
+			System.out.println(empresa + " " + id);
+			
+		} catch (ParseException | RemoteException e){}
+	}
+	
+	@Path("/removerInteresse")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void removerInteresseFunc(String msg) {
+		JSONParser parser = new JSONParser(msg);
+		try {
+			LinkedHashMap<String, Object> json = parser.object();
+			int id = Integer.parseInt(json.get("id").toString());
+			String empresa = json.get("empresa").toString();
+			Server.serv.removerCotacaoDesinteressante(empresa, id);
+			System.out.println(empresa + " " + id);
+			
+		} catch (ParseException | RemoteException e){}
+	}
+	
+}

@@ -1,0 +1,6 @@
+package net.codejava.ws;
+
+public class Models {
+	int id;
+	String empresa;
+}

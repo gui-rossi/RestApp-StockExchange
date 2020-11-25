@@ -1,0 +1,9 @@
+package net.codejava.ws;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+
+@Path("/bonjour")
+public class HelloResource {
+
+}

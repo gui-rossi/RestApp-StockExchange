@@ -1,0 +1,11 @@
+package net.codejava.ws;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+public class Start implements ServletContextListener {
+	public static void main(String[] args) throws InterruptedException {    
+        System.out.println("Main executed");
+       //I want to execute some code here
+}
+}

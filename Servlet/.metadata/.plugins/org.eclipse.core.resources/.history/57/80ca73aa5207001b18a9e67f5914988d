@@ -1,0 +1,63 @@
+package net.codejava.ws;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.inject.Singleton;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.sse.OutboundSseEvent;
+import javax.ws.rs.sse.Sse;
+import javax.ws.rs.sse.SseBroadcaster;
+import javax.ws.rs.sse.SseEventSink;
+
+@Singleton
+@Path("/event")
+public class SSE{
+	/*
+	private SseBroadcaster broadcaster;
+	private Sse sse;
+	
+	@GET
+	@Produces(MediaType.SERVER_SENT_EVENTS)
+	public void register(@Context Sse sse, @Context SseEventSink eventSink) {
+		this.sse = sse;
+		
+		if (broadcaster == null) {
+			this.broadcaster = sse.newBroadcaster();
+		}
+		this.broadcaster.register(eventSink);
+		
+		this.beat();
+	}
+	
+	public void beat() {
+		System.out.println("...");
+		this.broadcaster.broadcast(this.sse.newEvent("ping"));
+	}
+	*/
+	
+	@GET
+    @Produces(MediaType.SERVER_SENT_EVENTS)
+    public void getServerSentEvents(@Context SseEventSink eventSink, @Context Sse sse) {
+        
+            
+                // ... code that waits 1 second
+                final OutboundSseEvent event = sse.newEventBuilder()
+                    .name("4200")
+                    .data("do server")
+                    .comment("um comentario sei la")
+                    .build();
+                eventSink.send(event);
+            
+        
+    }
+}

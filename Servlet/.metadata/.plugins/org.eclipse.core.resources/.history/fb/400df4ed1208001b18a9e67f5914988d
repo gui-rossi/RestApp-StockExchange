@@ -1,0 +1,42 @@
+package net.codejava.ws;
+
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+import HelloWorld.InterfaceServ;
+
+public class Sistema implements Runnable {
+	ServImpl servRef;
+	
+	Sistema(ServImpl referenciaServidor) throws RemoteException{
+	        this.servRef = referenciaServidor;
+	}
+	
+	/*Thread que fica sempre rodando checando se rolou venda e compra*/
+	@Override
+	public void run() {
+		while (true) {
+			try {
+				/*checo se tem alguem comprando ou vendendo acoes e realizo o negocio*/
+				Server.serv.checaNegocios();
+				/*checo se preciso notificar alguem sobre ganho ou perda*/
+				Server.serv.checaNotificacoes();
+				//adiciono na fila de envios
+				if (Server.hadDeal) {
+					
+					FeedHistory f33d = new FeedHistory();	
+					f33d.id_comprador = Server.id_comprador;
+					f33d.id_vendedor = Server.id_vendedor;
+					f33d.message_comprador = Server.message_comprador;
+					f33d.id_vendedor = Server.message_vendedor;
+					Server.feed.add(f33d);
+					
+					Server.hadDeal = false;
+				}
+				
+			}catch(Exception e) {}
+		}
+	}
+}

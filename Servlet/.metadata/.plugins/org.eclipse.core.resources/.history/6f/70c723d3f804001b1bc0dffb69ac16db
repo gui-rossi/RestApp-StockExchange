@@ -1,0 +1,24 @@
+package net.codejava.ws;
+
+import javax.websocket.OnMessage;
+import javax.websocket.server.PathParam;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import com.sun.research.ws.wadl.Response;
+
+@Path("/declararInteresse")
+public class Interface {
+	
+	
+	@Path("/{param}")
+	@GET
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void declararInteresse(@PathParam("param") String msg) {
+		System.out.println("Jersey say : " + msg);
+	}
+}

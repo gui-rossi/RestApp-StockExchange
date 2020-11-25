@@ -1,0 +1,21 @@
+package net.codejava.ws;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+@Path("/bonjour")
+public class HelloResource {
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String direBonjour () {
+		return "Bonjour caralho";
+	}
+	
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	public String sayHTMLHello() {
+		return "<html><title>HELLO REST</title><body><h1>Bonjour xdxd</h1></body></html>";
+	}
+}

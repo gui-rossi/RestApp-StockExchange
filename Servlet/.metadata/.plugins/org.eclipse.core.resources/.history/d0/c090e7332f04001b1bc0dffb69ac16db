@@ -1,0 +1,18 @@
+package net.codejava.ws;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+public class Start implements ServletContextListener {
+	int i = 0;
+	
+	@Override
+    public void contextInitialized(ServletContextEvent arg0) {
+        System.out.println("Application started" + i);
+        i++;
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent arg0) {
+    }
+}

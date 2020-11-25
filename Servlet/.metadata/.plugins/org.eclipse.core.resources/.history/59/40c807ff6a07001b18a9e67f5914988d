@@ -1,0 +1,45 @@
+package net.codejava.ws;
+
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+import HelloWorld.InterfaceServ;
+
+public class Start implements ServletContextListener {
+	
+	public static void main(String[] args) throws InterruptedException {    
+        System.out.println("Main executed");
+       //I want to execute some code here
+	}
+	
+	@Override
+    public void contextInitialized(ServletContextEvent arg0) {
+		try {
+			Registry referenciaServicoNomes;
+	        ServImpl referenciaServidor = new ServImpl();
+	        Server.serv = referenciaServidor;
+	        
+	        referenciaServicoNomes = LocateRegistry.createRegistry(1098);
+	        referenciaServicoNomes.rebind("HelloWorld", Server.serv);
+	        
+	        /*Coloco pra rodar a thread que fica sempre verificando os pedidos de compra e venda*/
+	        Sistema sis = new Sistema(Server.serv);
+	        Thread t_Sis = new Thread(sis);
+	        t_Sis.start();
+	        MudaCotacao muda = new MudaCotacao(Server.serv);
+	        Thread t_Muda = new Thread(muda);
+	        t_Muda.start();
+	        
+	        SSE.id = "1";
+	        SSE.msg = "nada";
+	        
+		}catch(Exception e) {System.out.println(e.getMessage());}
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent arg0) {
+    }
+}

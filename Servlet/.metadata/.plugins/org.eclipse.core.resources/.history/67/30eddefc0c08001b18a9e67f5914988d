@@ -1,0 +1,20 @@
+package net.codejava.ws;
+
+public class Server {
+	public static ServImpl serv;
+	
+	public static FeedHistory feed = new FeedHistory();
+	
+	public static String id_comprador;
+	public static String id_vendedor;
+	public static String message_vendedor;
+	public static String message_comprador;
+}
+
+class FeedHistory{
+	public static String[] id_comprador = new String[10];
+	public static String[] id_vendedor = new String[10];
+	public static String[] message_vendedor = new String[10];
+	public static String[] message_comprador = new String[10];
+	public static boolean[] sent = new boolean[40];
+}

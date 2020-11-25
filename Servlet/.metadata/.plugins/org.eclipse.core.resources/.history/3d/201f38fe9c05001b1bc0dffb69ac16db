@@ -1,0 +1,10 @@
+package net.codejava.ws;
+
+public class Models {
+
+	class DeclararInteresse{
+		int id;
+		String empresa;
+	}
+	
+}

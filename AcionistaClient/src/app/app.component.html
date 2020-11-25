@@ -1,0 +1,132 @@
+<div>
+  <h1>WELCOME TO BOLSA DE VALORES!</h1>
+</div>
+
+<div *ngIf="name_functions">
+  <div>
+    <button (click)="adicionarAcionista()" style="margin-bottom: 0.9rem;">
+      <strong style="margin: 0.9rem;">Digite seu nome</strong>
+    </button>
+
+    <input style="margin-left: 1rem;" type="text" id="nome" placeholder="Seu nome">
+
+  </div>
+</div>
+
+<div *ngIf="!name_functions">
+
+  <div style="margin-top: 2rem; margin-bottom: 2rem;">
+    Bem vindo(a), {{name}}.
+  </div>
+
+  <div style="float: left;">
+
+    <div>
+      <button (click)="inserirInteresseCotacao()" style="margin-bottom: 0.9rem;">
+        <strong style="margin: 0.9rem;">Inserir Interesse</strong>
+      </button>
+
+      <input style="margin-left: 1rem;" type="text" id="inserirInteresse" placeholder="Nome da empresa">
+
+    </div>
+
+    <br>
+
+    <div>
+      <button (click)="removerInteresseCotacao()" style="margin-bottom: 0.9rem;">
+        <strong>Remover Interesse</strong>
+      </button>
+
+      <input style="margin-left: 1rem;" type="text" id="removerInteresse" placeholder="Nome da empresa">
+
+    </div>
+
+    <br>
+
+    <div>
+      <div style="position:relative;">
+      
+      <button (click)="adicionarNotificacao()" style="margin-bottom: 0.9rem;">
+        <strong>Notificação</strong>
+      </button>
+
+        <input style="margin-left: 1rem;" type="text" id="notificacaoEmpresa" placeholder="Nome da empresa">
+        <input style="margin-left: 1rem;" type="text" id="notificacaoLimite" placeholder="Limite: ganho/perda">
+        <input style="margin-left: 1rem;" type="text" id="notificacaoTipo" placeholder="Tipo: ganho/perda">
+      
+      </div>
+    </div>
+
+    <br>
+
+    <div>
+      <div style="position:relative;">
+      
+      <button (click)="pedidoCompra()" style="margin-bottom: 0.9rem;">
+        <strong>Compra</strong>
+      </button>
+      
+      <input style="margin-left: 1rem;" type="text" id="compraQtde" placeholder="Quantidades de ações">
+      <input style="margin-left: 1rem;" type="text" id="compraPrecoMax" placeholder="Preço Maximo">
+      <input style="margin-left: 1rem;" type="text" id="compraEmpresa" placeholder="Nome da empresa">
+      <input style="margin-left: 1rem;" type="text" id="compraTempo" placeholder="Tempo (s)">
+      
+      </div>
+    </div>
+
+    <br>
+
+    <div>
+      <div style="position:relative;">
+      
+        <button (click)="pedidoVenda()" style="margin-bottom: 0.9rem;">
+          <strong>Venda</strong>
+        </button>
+        
+        <input style="margin-left: 1rem;" type="text" id="vendaQtde" placeholder="Quantidades de ações">
+        <input style="margin-left: 1rem;" type="text" id="vendaPrecoMin" placeholder="Preço Minimo">
+        <input style="margin-left: 1rem;" type="text" id="vendaEmpresa" placeholder="Nome da empresa">
+        <input style="margin-left: 1rem;" type="text" id="vendaTempo" placeholder="Tempo (s)">
+        
+        </div>
+    </div>
+
+    <br>
+
+    <div>
+      <button (click)="obterCotacoes()" style="margin-bottom: 0.9rem; float: left">
+        <strong>Obter cotações</strong>
+      </button>
+      <div id="obterCotacoes" style="float: left; margin-left: 3rem;">
+        
+      </div>
+    </div>
+
+    
+
+  </div>
+
+  <div style="float: left; margin-left: 5rem;">
+    <strong>Nome das empresas:</strong>
+    <li style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: larger;">petrobras</li>
+    <li style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: larger;">azul</li>
+    <li style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: larger;">oi</li>
+    <li style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: larger;">facebook</li>
+    <li style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: larger;" >exxonmobil</li>
+
+    <div style="margin-top: 1rem;">
+      <button (click)="keepListening()">
+        Update Console
+      </button>
+      <div style="margin-top: 1.5rem; font-family: monospace; width: 25rem;" id="events">
+      
+      </div>
+    </div>
+
+  </div>
+  
+
+</div>
+
+
+<!--<router-outlet></router-outlet>-->

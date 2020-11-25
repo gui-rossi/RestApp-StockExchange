@@ -1,0 +1,48 @@
+package net.codejava.ws;
+
+import java.rmi.NotBoundException;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.LinkedHashMap;
+
+import javax.websocket.OnMessage;
+import javax.websocket.server.PathParam;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import org.apache.tomcat.util.json.JSONParser;
+import org.apache.tomcat.util.json.ParseException;
+
+import com.sun.research.ws.wadl.Response;
+
+@Path("/declararInteresse")
+public class Interface {
+	Registry refServ;
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void declararInteresseFunc(String msg) {
+		JSONParser parser = new JSONParser(msg);
+		try {
+			Remote rem = refServ.lookup("HelloWorld");
+			
+			
+			LinkedHashMap<String, Object> json = parser.object();
+			Object id = json.get("id");
+			Object empresa = json.get("empresa");
+			
+			System.out.println(id);
+			System.out.println(empresa);
+		} catch (ParseException | RemoteException e) {} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

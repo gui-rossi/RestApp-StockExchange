@@ -1,0 +1,8 @@
+package net.codejava.ws;
+
+public class Start {
+	public static void main(String[] args) throws InterruptedException {    
+        System.out.println("Main executed");
+       //I want to execute some code here
+	}
+}

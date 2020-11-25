@@ -1,0 +1,6 @@
+package net.codejava.ws;
+
+public class Server {
+	public static int id = 0;
+	public static ServImpl serv;
+}

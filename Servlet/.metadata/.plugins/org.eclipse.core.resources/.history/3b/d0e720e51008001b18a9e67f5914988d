@@ -1,0 +1,9 @@
+package net.codejava.ws;
+
+public class FeedHistory {
+	public String id_comprador;
+	public String id_vendedor;
+	public String message_vendedor;
+	public String message_comprador;
+	public boolean sent;
+}

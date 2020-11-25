@@ -1,0 +1,42 @@
+package net.codejava.ws;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.inject.Singleton;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.sse.OutboundSseEvent;
+import javax.ws.rs.sse.Sse;
+import javax.ws.rs.sse.SseBroadcaster;
+import javax.ws.rs.sse.SseEventSink;
+
+@Singleton
+@Path("/event")
+public class SSE{
+	public static String id;
+	public static String message;
+	
+	@GET
+    @Produces(MediaType.SERVER_SENT_EVENTS)
+    public void getServerSentEvents(@Context SseEventSink eventSink, @Context Sse sse, @QueryParam("id") String id) {
+		String message = SSE.message;
+        OutboundSseEvent event = sse.newEventBuilder()
+            .name(id)
+            .data(message)
+            .build();
+        eventSink.send(event);
+    }
+}
+
+
+

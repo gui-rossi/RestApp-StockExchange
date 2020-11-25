@@ -1,0 +1,23 @@
+package net.codejava.ws;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Server {
+	public static ServImpl serv;
+	
+	List<FeedHistory> feed = new ArrayList<FeedHistory>();
+	
+	public static String id_comprador;
+	public static String id_vendedor;
+	public static String message_vendedor;
+	public static String message_comprador;
+}
+
+class FeedHistory{
+	public static String id_comprador;
+	public static String id_vendedor;
+	public static String message_vendedor;
+	public static String message_comprador;
+	public static boolean sent;
+}

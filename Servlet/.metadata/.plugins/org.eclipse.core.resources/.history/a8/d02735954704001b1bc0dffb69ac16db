@@ -1,0 +1,16 @@
+package net.codejava.ws;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+@Path("/declararInteresse");
+public class Interface {
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public SecUpd sayJsonHello() {
+		return new SecUpd("Collection teste", "09/30/2020", "10/02/20202");
+	}
+}
